@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="바닥 크기와 타일 규격으로 여유분을 포함한 예상 타일 장수를 간단하게 계산하세요.">
+  <title>타일 수량 계산기</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main>
+    <header class="intro">
+      <p class="eyebrow">공간을 준비하는 작은 도구</p>
+      <h1>우리 집 바닥,<br>타일이 몇 장 필요할까요?</h1>
+      <p class="lead">바닥 크기를 입력하면 필요한 타일 수량을 바로 알려드려요.</p>
+    </header>
+    <section class="calculator" aria-label="타일 수량 계산">
+      <form id="tile-form" novalidate>
+        <div class="section-heading"><span class="step">01</span><h2>바닥과 타일 크기</h2></div>
+        <p class="help">집 전체 평수가 아닌, 타일을 깔 바닥의 길이를 입력해 주세요.</p>
+        <div class="dimensions">
+          <div class="field">
+            <label for="width">바닥 가로 길이 <span>(m)</span></label>
+            <input id="width" name="width" type="text" inputmode="decimal" value="4" maxlength="16" aria-describedby="length-help width-error" autocomplete="off" spellcheck="false">
+            <p class="error" id="width-error"></p>
+          </div>
+          <div class="field">
+            <label for="length">바닥 세로 길이 <span>(m)</span></label>
+            <input id="length" name="length" type="text" inputmode="decimal" value="3" maxlength="16" aria-describedby="length-help length-error" autocomplete="off" spellcheck="false">
+            <p class="error" id="length-error"></p>
+          </div>
+        </div>
+        <p class="help range" id="length-help">각 길이 0.01~100m · 소수점 셋째 자리까지 입력 가능</p>
+        <div class="field">
+          <label for="tile-size">타일 한 장의 크기</label>
+          <select id="tile-size" name="tile-size">
+            <option value="300">300 × 300 mm (30 × 30 cm)</option>
+            <option value="600" selected>600 × 600 mm (60 × 60 cm)</option>
+            <option value="800">800 × 800 mm (80 × 80 cm)</option>
+          </select>
+        </div>
+        <div class="field extra-field">
+          <label for="extra">추가로 준비할 여유분</label>
+          <select id="extra" name="extra" aria-describedby="extra-help">
+            <option value="5">5%</option><option value="10" selected>10%</option><option value="15">15%</option>
+          </select>
+          <p class="help" id="extra-help">자르거나 깨지는 타일에 대비한 추가분이에요.<br>기본값 10%는 예시이며, 모든 현장에 적용되는 기준은 아닙니다.</p>
+        </div>
+        <button type="reset" class="reset">예시 값으로 되돌리기</button>
+      </form>
+      <section class="result-panel" aria-labelledby="result-title">
+        <div class="section-heading"><span class="step">02</span><h2 id="result-title">예상 준비 수량</h2></div>
+        <div id="results" aria-live="polite" aria-atomic="true">
+          <p class="result-caption">여유분을 포함한 타일</p>
+          <p class="quantity"><span id="quantity">—</span><span class="unit">장</span></p>
+          <dl class="result-details"><div><dt>시공 면적</dt><dd><span id="area">—</span> ㎡</dd></div><div><dt>선택한 타일</dt><dd id="tile-label">—</dd></div><div><dt>포함된 여유분</dt><dd id="extra-label">—</dd></div></dl>
+          <p id="result-description" class="result-description"></p>
+        </div>
+        <button id="copy" class="copy" type="button" disabled>계산 결과 복사하기 <span aria-hidden="true">↗</span></button>
+        <p id="copy-status" class="copy-status" role="status"></p>
+        <div id="manual-copy" hidden><label for="copy-text">아래 결과를 선택해 직접 복사해 주세요.</label><textarea id="copy-text" rows="6" readonly></textarea></div>
+      </section>
+    </section>
+    <aside class="notice" aria-labelledby="notice-title">
+      <h2 id="notice-title">구매 전, 한 번 더 확인해 주세요</h2>
+      <p>직사각형 바닥의 면적을 기준으로 계산한 예상 수량입니다. 실제 필요한 시공 수량과 구매 수량은 타일 배치, 절단 위치, 줄눈, 깨짐, 제품의 박스 포장 단위에 따라 달라질 수 있습니다.</p>
+      <p>복잡한 모양의 바닥이나 대각선 배치의 절단 손실은 계산하지 않습니다. 구매 전 판매처나 시공 담당자와 수량을 확인해 주세요.</p>
+    </aside>
+    <footer>내 공간을 이해하는 첫걸음 · 타일 수량 계산기</footer>
+    <noscript><p class="notice">계산기를 사용하려면 브라우저에서 JavaScript를 켜 주세요.</p></noscript>
+  </main>
+</body>
+</html>
