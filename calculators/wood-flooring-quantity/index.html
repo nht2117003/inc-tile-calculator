@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>마루 수량 계산기</title><meta name="description" content="제품 규격을 직접 입력하는 마루 수량 계산기"><link rel="stylesheet" href="style.css"><script src="script.js" defer></script></head>
+<body><main><header class="intro"><p class="eyebrow">공간을 준비하는 작은 도구 · <a href="../flooring-quantity/index.html">바닥재 계산기 선택</a></p><h1>우리 집 마루,<br>얼마나 준비하면 될까요?</h1><p class="lead">마루 제품의 실제 규격으로 필요한 수량을 계산해요.</p></header>
+<section class="calculator" aria-label="마루 수량 계산"><form id="material-form" novalidate><div class="section-heading"><span class="step">01</span><h2>바닥 크기와 마루 규격</h2></div>
+        <div class="field">
+          <label for="area-mode">바닥 면적 입력 방법</label>
+          <select id="area-mode" name="area-mode" aria-controls="dimensions-fields direct-area-field">
+            <option value="dimensions">가로·세로 길이로 계산</option>
+            <option value="area">시공할 면적(㎡) 직접 입력</option>
+          </select>
+        </div>
+        <div id="dimensions-fields">
+          <div class="dimensions">
+            <div class="field"><label for="width">바닥 가로 길이 <span>(m)</span></label>
+              <input id="width" type="text" inputmode="decimal" value="4" maxlength="16" aria-describedby="length-help width-error" autocomplete="off">
+              <p class="error" id="width-error"></p></div>
+            <div class="field"><label for="length">바닥 세로 길이 <span>(m)</span></label>
+              <input id="length" type="text" inputmode="decimal" value="3" maxlength="16" aria-describedby="length-help length-error" autocomplete="off">
+              <p class="error" id="length-error"></p></div>
+          </div>
+          <p class="help range" id="length-help">각 길이 0.01~100m · 소수점 셋째 자리까지 입력 가능</p>
+        </div>
+        <div class="field extra-field" id="direct-area-field" hidden>
+          <label for="direct-area">실제로 시공할 바닥 면적 <span>(㎡)</span></label>
+          <input id="direct-area" type="text" inputmode="decimal" value="12" maxlength="16" disabled aria-describedby="area-help direct-area-error" autocomplete="off">
+          <p class="error" id="direct-area-error"></p>
+          <p class="help" id="area-help">0.01~10,000㎡ · 소수점 셋째 자리까지. 여러 공간은 실제 시공 면적을 합산해 입력하세요.</p>
+        </div>
+
+<div class="field extra-field"><label for="product-mode">제품 정보 입력 방법</label><select id="product-mode" aria-controls="coverage-fields size-fields"><option value="coverage" selected>상자에 적힌 박스당 시공 면적</option><option value="size">한 장 크기와 박스당 장수</option></select><p class="help">규격은 제품마다 달라요. 실제 제품 표기를 확인해 주세요.</p></div>
+<div id="coverage-fields"><div class="field extra-field"><label for="coverage">한 박스의 시공 면적 (㎡)</label><input id="coverage" type="text" inputmode="decimal" maxlength="16" placeholder="예: 1.44" value="" aria-describedby="coverage-help coverage-error" autocomplete="off"><p class="error" id="coverage-error"></p><p class="help" id="coverage-help">제품 표기의 시공 가능 면적을 입력하세요. 0.01~100㎡, 소수점 셋째 자리까지. 예시 값은 공통 규격이 아닙니다.</p></div></div>
+<div id="size-fields"><div class="field extra-field"><label for="piece-width">마루 한 장의 폭 (mm)</label><input id="piece-width" type="text" inputmode="decimal" maxlength="16" placeholder="예: 95" value="" aria-describedby="piece-width-help piece-width-error" autocomplete="off"><p class="error" id="piece-width-error"></p><p class="help" id="piece-width-help">제품에 적힌 실제 폭을 입력하세요. 1~10,000mm, 정수만 입력합니다.</p></div><div class="field extra-field"><label for="piece-length">마루 한 장의 길이 (mm)</label><input id="piece-length" type="text" inputmode="decimal" maxlength="16" placeholder="예: 800" value="" aria-describedby="piece-length-help piece-length-error" autocomplete="off"><p class="error" id="piece-length-error"></p><p class="help" id="piece-length-help">제품에 적힌 실제 길이를 입력하세요. 1~10,000mm, 정수만 입력합니다.</p></div><div class="field extra-field"><label for="per-box">한 박스에 들어 있는 장수 (장, 선택 입력)</label><input id="per-box" type="text" inputmode="decimal" maxlength="16" placeholder="예: 16" value="" aria-describedby="per-box-help per-box-error" autocomplete="off"><p class="error" id="per-box-error"></p><p class="help" id="per-box-help">정수 1~1,000장. 비워 두면 예상 장수만 보여드려요. 제품별 포장 수량을 확인하세요.</p></div><p class="help">한 장의 폭 × 길이로 면적을 계산합니다. 겹침·결합 부위가 있으면 제품 표기의 실제 시공 면적 방식으로 계산하세요.</p></div>
+<div class="field extra-field"><label for="extra">추가로 준비할 여유분</label><select id="extra" aria-describedby="extra-help"><option value="5">5%</option><option value="10" selected>10%</option><option value="15">15%</option></select><p class="help" id="extra-help">10%는 입력 예시이며 모든 현장의 권장 기준은 아닙니다. 배치·절단·제품에 따라 판매처와 확인하세요.</p></div><button type="reset" class="reset">입력값 초기화</button></form>
+<section class="result-panel" aria-labelledby="result-title"><div class="section-heading"><span class="step">02</span><h2 id="result-title">예상 준비 수량</h2></div><div aria-live="polite" aria-atomic="true"><p class="result-caption">여유분을 포함한 마루</p><p class="quantity"><span id="quantity">—</span><span id="quantity-unit" class="unit">박스</span></p><dl class="result-details"><div><dt>실제 시공 면적</dt><dd><span id="area-result">—</span> ㎡</dd></div><div><dt>여유분 포함 필요 면적</dt><dd><span id="needed-area">—</span> ㎡</dd></div><div id="pieces-row" hidden><dt>예상 필요 장수</dt><dd><span id="pieces">—</span> 장</dd></div><div id="purchase-row" hidden><dt>박스로 구매하는 총 장수</dt><dd><span id="purchase-pieces">—</span> 장</dd></div><div><dt>포함된 여유분</dt><dd id="extra-result">—</dd></div></dl><p id="result-description" class="result-description">제품 규격을 입력해 주세요.</p></div><button id="copy" class="copy" type="button" disabled>계산 결과 복사하기 <span aria-hidden="true">↗</span></button><p id="copy-status" class="copy-status" role="status"></p><div id="manual-copy" hidden><label for="copy-text">아래 결과를 선택해 직접 복사해 주세요.</label><textarea id="copy-text" rows="8" readonly></textarea></div></section></section>
+<aside class="notice"><h2>구매 전, 한 번 더 확인해 주세요</h2><p>분양 평수가 아닌 실제 시공 면적을 사용하세요. 직사각형 바닥의 면적 기준 추정치이며, 복잡한 배치·절단·무늬 맞춤·공간별 자투리 재사용을 정밀 계산하지 않습니다. 실제 구매량은 판매처나 시공 담당자와 확인하세요.</p><p>마루의 두께나 강마루·강화마루 명칭만으로 박스 수를 결정할 수 없습니다. 실제 제품의 시공 면적과 포장 수량을 확인하세요. 시공비·철거비·접착제·걸레받이 비용은 포함하지 않습니다.</p><p>화면 면적은 소수점 둘째 자리로 표시하지만 수량은 반올림 전 값으로 계산합니다. 모든 제품 규격 예시는 입력 설명용입니다.</p></aside><footer>마루 수량 계산기 · 외부 전송 없이 계산</footer><noscript><p class="notice">계산기를 사용하려면 JavaScript를 켜 주세요.</p></noscript></main></body></html>

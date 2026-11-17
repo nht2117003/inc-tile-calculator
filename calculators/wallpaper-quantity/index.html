@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="방 크기와 벽 높이, 실제 벽지 롤 규격으로 필요한 도배지 롤 수를 계산합니다.">
+<title>도배지 수량 계산기</title><link rel="stylesheet" href="style.css"><script src="script.js" defer></script></head>
+<body><main>
+<header class="intro"><p class="eyebrow">공간을 준비하는 작은 도구</p><h1>우리 집 벽지,<br>몇 롤 준비하면 될까요?</h1><p class="lead">벽 높이에 맞춰 자르는 길이까지 고려해 필요한 도배지를 계산해요.</p></header>
+<aside class="notice scope"><h2>벽 도배용 · 무늬 맞춤 없는 벽지 기준</h2><p>천장은 제외합니다. 문·창문 면적은 빼지 않으며, 무늬 맞춤이 필요한 벽지는 이 결과만으로 주문하지 마세요.</p></aside>
+<section class="calculator" aria-label="도배지 수량 계산">
+<form id="wallpaper-form" novalidate>
+<div class="section-heading"><span class="step">01</span><h2>벽 크기와 벽지 규격</h2></div>
+<div class="field"><label for="mode">도배할 범위</label><select id="mode" aria-describedby="mode-help" aria-controls="length-field"><option value="room">직사각형 방 전체 네 벽</option><option value="wall">벽 한 면만</option></select><p class="help" id="mode-help">방 전체는 네 벽의 높이가 같다고 가정합니다. 여러 방·천장은 따로 계산해야 해요.</p></div>
+<div class="dimensions"><div class="field"><label for="width" id="width-label">방 가로 길이 (m)</label><input id="width" type="text" inputmode="decimal" value="4" maxlength="16" autocomplete="off" aria-describedby="width-help width-error"><p class="error" id="width-error"></p><p class="help" id="width-help">0.01~100m · 소수점 셋째 자리까지</p></div>
+<div class="field" id="length-field"><label for="length">방 세로 길이 (m)</label><input id="length" type="text" inputmode="decimal" value="3" maxlength="16" autocomplete="off" aria-describedby="length-help length-error"><p class="error" id="length-error"></p><p class="help" id="length-help">0.01~100m · 소수점 셋째 자리까지</p></div></div>
+<div class="field extra-field"><label for="height">도배할 벽 높이 (m)</label><input id="height" type="text" inputmode="decimal" value="2.4" maxlength="16" autocomplete="off" aria-describedby="height-help height-error"><p class="error" id="height-error"></p><p class="help" id="height-help">0.01~10m · 소수점 셋째 자리까지. 기본 2.4m는 입력 예시입니다.</p></div>
+<div class="dimensions"><div class="field"><label for="roll-width">벽지 한 롤의 폭 (m)</label><input id="roll-width" type="text" inputmode="decimal" placeholder="예: 1.06" maxlength="16" autocomplete="off" aria-describedby="roll-width-help roll-width-error"><p class="error" id="roll-width-error"></p><p class="help" id="roll-width-help">0.01~10m · 106cm는 1.06m입니다.</p></div>
+<div class="field"><label for="roll-length">벽지 한 롤의 길이 (m)</label><input id="roll-length" type="text" inputmode="decimal" placeholder="예: 15.6" maxlength="16" autocomplete="off" aria-describedby="roll-length-help roll-length-error"><p class="error" id="roll-length-error"></p><p class="help" id="roll-length-help">0.01~1,000m · 소수점 셋째 자리까지</p></div></div>
+<p class="help">합지·실크 이름만으로 규격을 정하지 않습니다. 실제 제품에 적힌 폭과 한 롤 길이를 입력하세요. 위 숫자는 예시이며 공통 규격이 아닙니다.</p>
+<details class="settings"><summary>위아래 자를 여유 길이</summary><div class="field extra-field"><label for="end-extra">위·아래 각각 더할 길이 (cm)</label><input id="end-extra" type="text" inputmode="numeric" value="10" maxlength="3" autocomplete="off" aria-describedby="end-extra-help end-extra-error"><p class="error" id="end-extra-error"></p><p class="help" id="end-extra-help">0~100cm 정수. 예시 기본값 10cm는 위·아래에 각각 더합니다. 모든 현장의 권장 기준은 아니며 실제 여유는 시공 담당자와 확인하세요.</p></div></details>
+<button type="reset" class="reset">입력값 초기화</button></form>
+<section class="result-panel" aria-labelledby="result-title"><div class="section-heading"><span class="step">02</span><h2 id="result-title">예상 필요 롤 수</h2></div>
+<div aria-live="polite" aria-atomic="true"><p class="result-caption">입력한 벽지 규격 기준</p><p class="quantity"><span id="quantity">—</span><span class="unit">롤</span></p>
+<dl class="result-details"><div><dt>벽 전체 면적 (문·창문 포함)</dt><dd><span id="area-result">—</span> ㎡</dd></div><div><dt>벽 높이로 자를 조각 수</dt><dd><span id="strips">—</span> 조각</dd></div><div><dt>한 조각 길이 (위아래 여유 포함)</dt><dd><span id="cut-length">—</span> m</dd></div><div><dt>한 롤에서 나오는 온전한 조각</dt><dd><span id="per-roll">—</span> 조각</dd></div></dl>
+<p id="result-description" class="result-description">제품의 벽지 폭과 한 롤 길이를 입력해 주세요.</p><p class="help">무늬 맞춤·천장·추가 예비 롤은 포함하지 않았습니다. 문·창문 위아래의 자투리 활용도 계산하지 않습니다.</p></div>
+<button id="copy" class="copy" type="button" disabled>계산 결과 복사하기 <span aria-hidden="true">↗</span></button><p id="copy-status" class="copy-status" role="status"></p>
+<div id="manual-copy" hidden><label for="copy-text">아래 결과를 선택해 직접 복사해 주세요.</label><textarea id="copy-text" rows="10" readonly></textarea></div></section></section>
+<aside class="notice"><h2>구매 전, 꼭 확인해 주세요</h2><p>벽지 한 폭을 벽 위에서 아래까지 세로로 붙이는 단순 계산입니다. 방 전체는 벽마다 필요한 조각 수를 각각 올림하고 합산합니다. 벽 모서리에서 남는 폭을 다른 벽에 재사용하지 않아 실제 시공량보다 많게 나올 수 있습니다.</p><p>문·창문은 빼지 않습니다. 무늬 반복·엇갈린 무늬 맞춤, 겹침 폭, 복잡한 모서리, 기울어진 천장, 서로 다른 벽 높이, 천장 도배, 벽화·패널형 벽지는 반영하지 않습니다. 무늬 맞춤 제품은 추가 손실이 생길 수 있으므로 판매처·시공 담당자에게 별도 산출을 요청하세요.</p><p>위아래 자를 여유만 반영하며 일정 비율의 여유나 예비 롤을 자동으로 더하지 않습니다. 실제 주문 수량과 같은 생산 묶음의 제품 확보 여부는 판매처에 확인하세요. 도배 인건비·풀·초배지·철거 비용은 포함하지 않습니다.</p></aside>
+<footer>도배지 수량 계산기 · 외부 전송 없이 계산</footer><noscript><p class="notice">계산기를 사용하려면 브라우저에서 JavaScript를 켜 주세요.</p></noscript>
+</main></body></html>
